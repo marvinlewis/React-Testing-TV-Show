@@ -2,12 +2,13 @@ import React from "react";
 import { render } from "@testing-library/react";
 import Episodes from "./Episodes";
 
+
 test("renders empty array", () => {
     render(<Episodes episodes={[]}/>)
 })
 
 test("renders movie name", () => {
-    const { getByText } = render(<Episodes episodes={[{
+    const { getByText, queryByTestId } = render(<Episodes episodes={[{
         id: 553946 ,
         url: "http://www.tvmaze.com/episodes/553946/stranger-things-1x01-chapter-one-the-vanishing-of-will-byers",
         name: "Chapter One: The Vanishing of Will Byers",
@@ -21,5 +22,7 @@ test("renders movie name", () => {
 
     expect(getByText(/chapter one: the vanishing of will byers/i))
     .toBeInTheDocument()
+
+    expect(queryByTestId(/episode-info/i)).toBeInTheDocument();
 
 })
